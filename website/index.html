@@ -166,7 +166,7 @@ section{position:relative;padding:72px 60px}
 
 /* Main name block */
 .hero-name-area{
-  flex:1;display:flex;flex-direction:column;justify-content:center;
+  flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;
   padding:24px 60px 0;position:relative;
 }
 
@@ -590,18 +590,10 @@ footer{
     <div class="ht-role">BUSINESS ANALYTICS STUDENT<br>FLAME UNIVERSITY / OPEN TO OPPORTUNITIES</div>
   </div>
 
-  <div class="hero-name-area">
+  <div class="hero-name-area" style="align-items:center">
     <div class="hero-name-block">
       <span class="hn" id="hN1">JAYITHA</span>
-      <span class="hn offset" id="hN2">REDDY</span>
-
-      <div class="hero-polaroid" id="hPol">
-        <div class="polaroid-tag">PORTRAIT / 01</div>
-        <div class="polaroid-frame">
-          <img src="assets/portrait.jpg" alt="Jayitha Reddy">
-        </div>
-        <div class="polaroid-caption">Jayitha Reddy — 2026</div>
-      </div>
+      <span class="hn" id="hN2">REDDY</span>
     </div>
   </div>
 
@@ -628,7 +620,13 @@ footer{
     <h2 class="s-title">About</h2>
   </div>
 
-  <div class="about-grid">
+  <div class="about-grid" style="grid-template-columns:280px 1fr;gap:60px;max-width:none">
+    <div class="about-img-col rev">
+      <div class="about-polaroid">
+        <img src="assets/portrait.jpg" alt="Jayitha Reddy">
+        <div class="about-pol-cap">Jayitha Reddy — Bangalore, 2026</div>
+      </div>
+    </div>
     <div class="about-content">
       <p class="about-intro rev">
         Analytical mind, creative spirit. I find meaning at the intersection of data, design, and human behaviour.
@@ -640,10 +638,10 @@ footer{
         My work spans <strong>business intelligence</strong>, <strong>AI-assisted data processing</strong>, research, and content. What threads it together is an obsession with clarity: making complex things simple, finding the pattern hiding in the noise.
       </p>
       <p class="about-body rev">
-        Outside of the analytical world, I'm equally at home with a sketchbook, a camera, or a piano. I find that creativity and analysis aren't opposites. They're the same muscle, flexed differently. Photography in particular is something I'm building into a serious practice, and I'll have a gallery to show for it soon.
+        Outside of the analytical world, I'm equally at home with a sketchbook, a camera, or a piano. I find that creativity and analysis aren't opposites. They're the same muscle, flexed differently.
       </p>
       <div class="about-tags rev">
-        <span class="tag red">Artificial Intelligence</span>
+        <span class="tag">Artificial Intelligence</span>
         <span class="tag">Data Analytics</span>
         <span class="tag">Business Intelligence</span>
         <span class="tag">Product Thinking</span>
@@ -991,9 +989,8 @@ window.addEventListener('scroll', () => {
 document.addEventListener('mousemove', e => {
   const px = (e.clientX/window.innerWidth-.5)*2;
   const py = (e.clientY/window.innerHeight-.5)*2;
-  gsap.to('#hN1',  {x:px*-10, y:py*-6,  duration:1.8, ease:'power2.out'});
-  gsap.to('#hN2',  {x:px*-6,  y:py*-4,  duration:1.8, ease:'power2.out'});
-  gsap.to('#hPol', {x:px*8,   y:py*5,   duration:2,   ease:'power2.out'});
+  gsap.to('#hN1', {x:px*-10, y:py*-6, duration:1.8, ease:'power2.out'});
+  gsap.to('#hN2', {x:px*-6,  y:py*-4, duration:1.8, ease:'power2.out'});
 });
 
 // ── 3D CARD TILT ──
@@ -1042,8 +1039,7 @@ function initAll() {
   const tl = gsap.timeline({delay:.05});
   tl.to('#hN1',  {opacity:1, y:0, duration:.8, ease:'power3.out'}, 0)
     .to('#hN2',  {opacity:1, y:0, duration:.8, ease:'power3.out'}, .15)
-    .to('#hPol', {opacity:1, duration:.7, ease:'power2.out'}, .4)
-    .to('#hTag', {opacity:1, duration:.6, ease:'power2.out'}, .55)
+    .to('#hTag', {opacity:1, duration:.6, ease:'power2.out'}, .4)
     .to('#hCta', {opacity:1, duration:.5, ease:'power2.out'}, .7);
 
   // Scroll reveals
