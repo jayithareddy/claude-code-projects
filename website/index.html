@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Jayitha Reddy — Business Analytics Student, Digital Marketing Enthusiast, and aspiring technologist interested in AI, analytics, and product thinking.">
-<meta name="theme-color" content="#080809">
+<meta name="description" content="Jayitha Reddy, Business Analytics Student and Digital Marketing Enthusiast interested in AI, analytics, and product thinking.">
+<meta name="theme-color" content="#FAFAF8">
 <title>Jayitha Reddy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,17 +15,19 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg-void: #080809;
-  --bg-surface: #0e0e14;
-  --bg-card: #141420;
-  --bg-glass: rgba(20, 20, 32, 0.6);
-  --text-cream: #F0EBE1;
-  --text-muted: #6A6A80;
-  --text-dim: #3A3A50;
-  --gold: #C8A96A;
-  --gold-dim: rgba(200, 169, 106, 0.15);
-  --gold-border: rgba(200, 169, 106, 0.25);
-  --border-dim: rgba(255, 255, 255, 0.05);
+  --bg-void: #FAFAF8;
+  --bg-surface: #F3F0E9;
+  --bg-card: #EAE6DC;
+  --bg-glass: rgba(250, 250, 248, 0.85);
+  --text-primary: #1C1A17;
+  --text-muted: #7A756D;
+  --text-dim: #B8B2A8;
+  --gold: #9E7B3F;
+  --gold-bright: #B8964F;
+  --gold-dim: rgba(158, 123, 63, 0.09);
+  --gold-border: rgba(158, 123, 63, 0.2);
+  --border-dim: rgba(26, 24, 22, 0.09);
+  --border-strong: rgba(26, 24, 22, 0.16);
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -36,7 +38,7 @@ html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg-void);
-  color: var(--text-cream);
+  color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.7;
@@ -49,26 +51,27 @@ body {
   position: fixed;
   width: 8px;
   height: 8px;
-  background: var(--gold);
+  background: var(--text-primary);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease;
-  mix-blend-mode: screen;
+  transition: width 0.3s ease, height 0.3s ease;
+  mix-blend-mode: multiply;
 }
 #cursor-ring {
   position: fixed;
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(200, 169, 106, 0.4);
+  border: 1px solid rgba(26, 24, 22, 0.25);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
-  transition: transform 0.12s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
 }
-body:hover #cursor { opacity: 1; }
+#cursor.on-link { background: var(--gold); }
+#cursor-ring.on-link { border-color: var(--gold-border); }
 
 /* ── MAGAZINE SPINE ── */
 #spine {
@@ -82,7 +85,7 @@ body:hover #cursor { opacity: 1; }
   align-items: center;
   justify-content: center;
   border-right: 1px solid var(--gold-border);
-  background: linear-gradient(to right, rgba(8,8,9,0.95), transparent);
+  background: var(--bg-void);
 }
 #spine-text {
   writing-mode: vertical-rl;
@@ -92,7 +95,7 @@ body:hover #cursor { opacity: 1; }
   font-size: 9px;
   letter-spacing: 0.25em;
   color: var(--gold);
-  opacity: 0.6;
+  opacity: 0.55;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -103,7 +106,7 @@ body:hover #cursor { opacity: 1; }
   transform: translateX(-50%);
   width: 1px;
   background: linear-gradient(to bottom, transparent, var(--gold));
-  opacity: 0.4;
+  opacity: 0.35;
   transition: height 0.1s linear;
 }
 
@@ -118,19 +121,20 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: background 0.4s ease, border-color 0.4s ease;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 nav.scrolled {
-  background: rgba(8, 8, 9, 0.9);
+  background: rgba(250, 250, 248, 0.94);
   border-bottom: 1px solid var(--border-dim);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 var(--border-dim);
 }
 .nav-logo {
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--text-cream);
+  letter-spacing: 0.03em;
+  color: var(--text-primary);
   text-decoration: none;
 }
 .nav-links {
@@ -141,13 +145,13 @@ nav.scrolled {
 .nav-links a {
   font-family: var(--font-body);
   font-size: 12px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
   text-decoration: none;
   transition: color 0.3s ease;
 }
-.nav-links a:hover { color: var(--text-cream); }
+.nav-links a:hover { color: var(--text-primary); }
 
 /* ── MAIN OFFSET FOR SPINE ── */
 main { margin-left: var(--spine-width); }
@@ -159,8 +163,9 @@ main { margin-left: var(--spine-width); }
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 60px 80px;
+  padding: 0 60px 88px;
   overflow: hidden;
+  background: linear-gradient(160deg, #FAFAF8 0%, #F3F0E9 60%, #EAE6DC 100%);
 }
 
 #hero-canvas {
@@ -171,19 +176,9 @@ main { margin-left: var(--spine-width); }
   pointer-events: none;
 }
 
-.hero-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  opacity: 0;
-}
-
 .hero-name-wrap {
   overflow: hidden;
-  margin-bottom: -10px;
+  margin-bottom: -8px;
 }
 
 .hero-name {
@@ -192,7 +187,7 @@ main { margin-left: var(--spine-width); }
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.02em;
-  color: var(--text-cream);
+  color: var(--text-primary);
   display: block;
   opacity: 0;
   transform: translateY(100%);
@@ -202,7 +197,7 @@ main { margin-left: var(--spine-width); }
   font-style: italic;
   font-weight: 300;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(240, 235, 225, 0.35);
+  -webkit-text-stroke: 1px rgba(26, 24, 22, 0.22);
   margin-left: clamp(40px, 6vw, 120px);
 }
 
@@ -210,36 +205,42 @@ main { margin-left: var(--spine-width); }
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-top: 48px;
-  gap: 40px;
+  margin-top: 56px;
+  gap: 48px;
 }
 
-.hero-terminal {
-  background: var(--bg-glass);
-  border: 1px solid var(--gold-border);
-  border-radius: 8px;
-  padding: 16px 20px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.8;
-  backdrop-filter: blur(8px);
-  max-width: 320px;
+/* Editorial identity block (replaces terminal) */
+.hero-identity {
   opacity: 0;
+  max-width: 360px;
 }
 
-.term-prompt { color: var(--gold); }
-.term-path { color: #7A9EC8; }
-.term-cmd { color: var(--text-cream); }
-.term-cursor {
-  display: inline-block;
-  width: 7px;
-  height: 13px;
-  background: var(--gold);
-  vertical-align: middle;
-  animation: blink 1.2s step-end infinite;
+.hero-identity-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  line-height: 1;
 }
 
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.hero-identity-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin-bottom: 14px;
+  opacity: 0.5;
+}
+
+.hero-identity-disciplines {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 400;
+}
 
 .hero-subtitle-block {
   text-align: right;
@@ -248,20 +249,22 @@ main { margin-left: var(--spine-width); }
 
 .hero-subtitle {
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
   color: var(--text-muted);
-  letter-spacing: 0.04em;
-  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .hero-quip {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-dim);
-  max-width: 360px;
+  max-width: 340px;
   margin-left: auto;
+  line-height: 1.6;
 }
 
 .hero-scroll-hint {
@@ -273,26 +276,27 @@ main { margin-left: var(--spine-width); }
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  animation: scrollpulse 2.8s ease-in-out infinite;
   opacity: 0;
-  animation: scrollpulse 2.5s ease-in-out infinite;
 }
 .scroll-hint-line {
   width: 1px;
   height: 48px;
   background: linear-gradient(to bottom, transparent, var(--gold));
+  opacity: 0.5;
 }
 .scroll-hint-label {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.2em;
   color: var(--gold);
-  opacity: 0.6;
+  opacity: 0.55;
   text-transform: uppercase;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
 
-@keyframes scrollpulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
+@keyframes scrollpulse { 0%,100%{opacity:0.35} 50%{opacity:0.8} }
 
 /* ── SECTIONS SHARED ── */
 section {
@@ -310,10 +314,10 @@ section {
 .section-label {
   font-family: var(--font-mono);
   font-size: 10px;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.7;
+  opacity: 0.75;
   margin-bottom: 16px;
   display: block;
 }
@@ -324,7 +328,7 @@ section {
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
-  color: var(--text-cream);
+  color: var(--text-primary);
 }
 
 .section-heading-italic {
@@ -338,6 +342,7 @@ section {
   grid-template-columns: 1fr 1fr;
   gap: 100px;
   align-items: start;
+  background: var(--bg-void);
 }
 
 .about-left { position: relative; }
@@ -349,7 +354,7 @@ section {
   border-radius: 2px;
   overflow: hidden;
   position: relative;
-  background: var(--bg-card);
+  background: var(--bg-surface);
 }
 
 .about-image-placeholder {
@@ -358,7 +363,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0e0e14 0%, #1a1a28 50%, #0e0e14 100%);
+  background: linear-gradient(135deg, #F3F0E9 0%, #E8E3D8 50%, #F3F0E9 100%);
   position: relative;
 }
 
@@ -369,7 +374,7 @@ section {
   color: transparent;
   -webkit-text-stroke: 1px var(--gold-border);
   letter-spacing: -0.05em;
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .about-image-caption {
@@ -380,7 +385,7 @@ section {
   font-size: 9px;
   letter-spacing: 0.15em;
   color: var(--gold);
-  opacity: 0.5;
+  opacity: 0.55;
   text-transform: uppercase;
 }
 
@@ -388,13 +393,13 @@ section {
 
 .about-intro {
   font-family: var(--font-display);
-  font-size: clamp(24px, 2.5vw, 36px);
+  font-size: clamp(22px, 2.5vw, 34px);
   font-weight: 300;
   font-style: italic;
-  line-height: 1.4;
-  color: var(--text-cream);
+  line-height: 1.45;
+  color: var(--text-primary);
   margin-bottom: 40px;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .about-body {
@@ -406,33 +411,34 @@ section {
 }
 
 .about-body strong {
-  color: var(--text-cream);
-  font-weight: 400;
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 .about-interests {
   margin-top: 48px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .interest-chip {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  font-size: 9px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
   border: 1px solid var(--gold-border);
-  border-radius: 1px;
-  padding: 6px 14px;
+  border-radius: 2px;
+  padding: 7px 14px;
   background: var(--gold-dim);
-  transition: background 0.3s ease, border-color 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .interest-chip:hover {
-  background: rgba(200, 169, 106, 0.25);
-  border-color: rgba(200, 169, 106, 0.5);
+  background: rgba(158, 123, 63, 0.16);
+  border-color: rgba(158, 123, 63, 0.4);
+  color: var(--gold-bright);
 }
 
 /* ── EXPERIENCE ── */
@@ -472,7 +478,7 @@ section {
   bottom: 0;
   width: 1px;
   background: linear-gradient(to bottom, var(--gold), transparent);
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
 .timeline-item {
@@ -491,7 +497,7 @@ section {
   height: 9px;
   border-radius: 50%;
   background: var(--gold);
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .timeline-year {
@@ -508,7 +514,7 @@ section {
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 600;
-  color: var(--text-cream);
+  color: var(--text-primary);
   margin-bottom: 4px;
   line-height: 1.2;
 }
@@ -516,8 +522,8 @@ section {
 .timeline-role {
   font-size: 13px;
   color: var(--text-muted);
-  font-weight: 300;
-  letter-spacing: 0.04em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
   margin-bottom: 20px;
 }
 
@@ -533,28 +539,33 @@ section {
   font-size: 9px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--text-muted);
   border: 1px solid var(--border-dim);
-  border-radius: 1px;
+  border-radius: 2px;
   padding: 4px 10px;
+  background: rgba(26, 24, 22, 0.03);
 }
 
 .timeline-desc {
   font-size: 14px;
   font-weight: 300;
   color: var(--text-muted);
-  line-height: 1.8;
+  line-height: 1.85;
   max-width: 520px;
 }
 
 /* ── PROJECTS ── */
-#projects { padding-bottom: 80px; }
+#projects {
+  padding-bottom: 80px;
+  background: var(--bg-void);
+}
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1px;
   margin-top: 80px;
+  background: var(--border-dim);
   border: 1px solid var(--border-dim);
 }
 
@@ -564,25 +575,15 @@ section {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: background 0.4s ease;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
   opacity: 0;
   transform: translateY(20px);
 }
 
-.project-card:hover { background: var(--bg-card); }
-
-.project-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid transparent;
-  border-image: linear-gradient(135deg, var(--gold-border), transparent) 1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
+.project-card:hover {
+  background: #FFFFFF;
+  box-shadow: inset 0 0 0 1px var(--gold-border);
 }
-
-.project-card:hover::after { opacity: 1; }
 
 .project-card.large { grid-column: span 7; }
 .project-card.medium { grid-column: span 5; }
@@ -593,15 +594,15 @@ section {
   font-family: var(--font-mono);
   font-size: 10px;
   color: var(--text-dim);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   margin-bottom: 48px;
 }
 
 .project-icon-wrap {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--gold-border);
-  border-radius: 2px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -611,11 +612,11 @@ section {
 }
 
 .project-card:hover .project-icon-wrap {
-  background: rgba(200, 169, 106, 0.2);
+  background: rgba(158, 123, 63, 0.15);
 }
 
 .project-icon {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
 }
 
@@ -623,7 +624,7 @@ section {
   font-family: var(--font-display);
   font-size: 24px;
   font-weight: 600;
-  color: var(--text-cream);
+  color: var(--text-primary);
   line-height: 1.2;
   margin-bottom: 12px;
 }
@@ -632,7 +633,7 @@ section {
   font-size: 13px;
   font-weight: 300;
   color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.75;
   margin-bottom: 24px;
 }
 
@@ -664,7 +665,7 @@ section {
   transition: background 0.4s ease;
 }
 
-.skill-group:hover { background: var(--bg-card); }
+.skill-group:hover { background: var(--bg-void); }
 
 .skill-group::before {
   content: '';
@@ -678,7 +679,7 @@ section {
   transition: opacity 0.4s ease;
 }
 
-.skill-group:hover::before { opacity: 0.6; }
+.skill-group:hover::before { opacity: 0.5; }
 
 .skill-group-title {
   font-family: var(--font-mono);
@@ -686,7 +687,7 @@ section {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
-  opacity: 0.7;
+  opacity: 0.8;
   margin-bottom: 20px;
 }
 
@@ -716,28 +717,30 @@ section {
   flex-shrink: 0;
 }
 
-.skill-group:hover .skill-item { color: var(--text-cream); }
+.skill-group:hover .skill-item { color: var(--text-primary); }
 
 /* ── EDUCATION ── */
-#education { }
+#education { background: var(--bg-void); }
 
 .edu-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 1px;
   margin-top: 80px;
+  background: var(--border-dim);
+  border: 1px solid var(--border-dim);
 }
 
 .edu-card {
-  border: 1px solid var(--border-dim);
+  background: var(--bg-void);
   padding: 48px 40px;
   position: relative;
   opacity: 0;
   transform: translateY(20px);
-  transition: border-color 0.4s ease;
+  transition: background 0.4s ease;
 }
 
-.edu-card:hover { border-color: var(--gold-border); }
+.edu-card:hover { background: #FFFFFF; }
 
 .edu-card::before {
   content: attr(data-index);
@@ -747,8 +750,8 @@ section {
   font-family: var(--font-display);
   font-size: 80px;
   font-weight: 700;
-  color: var(--text-cream);
-  opacity: 0.03;
+  color: var(--text-primary);
+  opacity: 0.04;
   line-height: 1;
 }
 
@@ -764,9 +767,9 @@ section {
 
 .edu-institution {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 600;
-  color: var(--text-cream);
+  color: var(--text-primary);
   line-height: 1.2;
   margin-bottom: 6px;
 }
@@ -782,14 +785,14 @@ section {
   font-size: 13px;
   color: var(--text-muted);
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
 .edu-major {
-  font-weight: 400;
-  color: var(--text-cream);
+  font-weight: 500;
+  color: var(--text-primary);
   font-size: 14px;
-  margin-bottom: 4px;
+  margin-bottom: 16px;
 }
 
 /* ── CERTIFICATIONS ── */
@@ -814,14 +817,26 @@ section {
   transition: background 0.4s ease;
 }
 
-.cert-card:hover { background: var(--bg-card); }
+.cert-card:hover { background: var(--bg-void); }
+
+.cert-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold-border), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.cert-card:hover::after { opacity: 1; }
 
 .cert-year {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.15em;
   color: var(--gold);
-  opacity: 0.6;
+  opacity: 0.65;
   text-transform: uppercase;
   margin-bottom: 12px;
 }
@@ -830,7 +845,7 @@ section {
   font-family: var(--font-display);
   font-size: 20px;
   font-weight: 600;
-  color: var(--text-cream);
+  color: var(--text-primary);
   line-height: 1.3;
   margin-bottom: 6px;
 }
@@ -839,10 +854,11 @@ section {
   font-size: 12px;
   color: var(--text-muted);
   font-weight: 300;
+  letter-spacing: 0.02em;
 }
 
 /* ── EXPLORING ── */
-#exploring { }
+#exploring { background: var(--bg-void); }
 
 .exploring-intro {
   font-family: var(--font-display);
@@ -851,7 +867,7 @@ section {
   font-weight: 300;
   color: var(--text-muted);
   max-width: 540px;
-  line-height: 1.5;
+  line-height: 1.55;
   margin-top: 20px;
   margin-bottom: 80px;
 }
@@ -876,10 +892,9 @@ section {
   padding: 28px 0;
   cursor: pointer;
   gap: 20px;
-  transition: padding 0.3s ease;
 }
 
-.topic-header:hover .topic-title { color: var(--text-cream); }
+.topic-header:hover .topic-title { color: var(--text-primary); }
 
 .topic-title {
   font-family: var(--font-display);
@@ -907,7 +922,7 @@ section {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: border-color 0.3s ease, transform 0.4s ease;
+  transition: border-color 0.3s ease, transform 0.4s ease, color 0.3s ease;
   font-size: 12px;
   color: var(--text-muted);
 }
@@ -918,7 +933,7 @@ section {
   color: var(--gold);
 }
 
-.topic-item.open .topic-title { color: var(--text-cream); }
+.topic-item.open .topic-title { color: var(--text-primary); }
 
 .topic-body {
   max-height: 0;
@@ -951,7 +966,7 @@ section {
   font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.03em;
-  color: var(--text-cream);
+  color: var(--text-primary);
 }
 
 .contact-heading-large span {
@@ -959,7 +974,7 @@ section {
   font-style: italic;
   font-weight: 300;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(240, 235, 225, 0.25);
+  -webkit-text-stroke: 1px rgba(26, 24, 22, 0.2);
 }
 
 .contact-tagline {
@@ -969,15 +984,15 @@ section {
   font-weight: 300;
   color: var(--text-muted);
   margin-top: 32px;
-  line-height: 1.6;
+  line-height: 1.65;
   max-width: 400px;
 }
 
 .contact-links {
   display: flex;
   flex-direction: column;
-  gap: 0;
   border: 1px solid var(--border-dim);
+  background: var(--bg-void);
 }
 
 .contact-link {
@@ -987,17 +1002,16 @@ section {
   padding: 28px 32px;
   text-decoration: none;
   border-bottom: 1px solid var(--border-dim);
-  transition: background 0.3s ease, border-color 0.3s ease;
-  group: true;
+  transition: background 0.3s ease;
 }
 
 .contact-link:last-child { border-bottom: none; }
-.contact-link:hover { background: var(--bg-card); }
+.contact-link:hover { background: #FFFFFF; }
 
 .contact-link-label {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
+  font-size: 9px;
+  letter-spacing: 0.18em;
   color: var(--text-dim);
   text-transform: uppercase;
   margin-bottom: 4px;
@@ -1006,7 +1020,7 @@ section {
 .contact-link-value {
   font-size: 16px;
   font-weight: 400;
-  color: var(--text-cream);
+  color: var(--text-primary);
   transition: color 0.3s ease;
 }
 
@@ -1031,6 +1045,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   margin-left: var(--spine-width);
+  background: var(--bg-void);
 }
 
 .footer-copy {
@@ -1062,14 +1077,14 @@ footer {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
 .loading-name {
   font-family: var(--font-display);
   font-size: 64px;
   font-weight: 700;
-  color: var(--text-cream);
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   opacity: 0;
   animation: fadeInUp 0.8s ease 0.3s forwards;
@@ -1088,20 +1103,19 @@ footer {
   animation: loadbar 1.4s ease forwards;
 }
 
-@keyframes fadeInUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 @keyframes loadbar { from{width:0} to{width:100%} }
 
-/* ── GLOW EFFECT ── */
+/* ── MOUSE GLOW ── */
 .mouse-glow {
   position: fixed;
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 169, 106, 0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(158, 123, 63, 0.04) 0%, transparent 65%);
   pointer-events: none;
   z-index: 1;
   transform: translate(-50%, -50%);
-  transition: transform 0.8s cubic-bezier(0.2, 0, 0, 1);
 }
 
 /* ── MAGNETIC BTN ── */
@@ -1113,27 +1127,20 @@ footer {
   font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-cream);
-  border: 1px solid var(--gold-border);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
   padding: 14px 28px;
   text-decoration: none;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease;
   cursor: none;
   position: relative;
   overflow: hidden;
 }
 
-.mag-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
+.mag-btn:hover {
   background: var(--gold-dim);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  border-color: var(--gold-border);
 }
-
-.mag-btn:hover { border-color: rgba(200, 169, 106, 0.5); }
-.mag-btn:hover::after { opacity: 1; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
@@ -1150,11 +1157,11 @@ footer {
   .skills-layout { grid-template-columns: 1fr 1fr; }
   .edu-layout { grid-template-columns: 1fr; }
   .contact-layout { grid-template-columns: 1fr; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .project-card.large,.project-card.medium,.project-card.small,.project-card.medium-full { grid-column: span 1; }
+  .projects-grid { display: flex; flex-direction: column; }
   .nav-links { display: none; }
   .hero-bottom { flex-direction: column; align-items: flex-start; }
   .hero-subtitle-block { text-align: left; }
+  .hero-quip { margin-left: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1205,8 +1212,6 @@ footer {
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
 
-  <div class="hero-eyebrow" id="heroEyebrow">jay@portfolio ~ zsh &lt;/&gt;</div>
-
   <div>
     <div class="hero-name-wrap">
       <span class="hero-name" id="heroName1">Jayitha</span>
@@ -1217,21 +1222,17 @@ footer {
   </div>
 
   <div class="hero-bottom">
-    <div class="hero-terminal" id="heroTerminal">
-      <div><span class="term-prompt">jay</span><span class="term-path">@portfolio</span> <span class="term-cmd">~ zsh</span></div>
-      <div style="color: var(--text-dim);">$ whoami</div>
-      <div style="color: var(--text-muted); font-size: 11px; margin-top: 6px;">Business Analytics Student</div>
-      <div style="color: var(--text-muted); font-size: 11px;">Digital Marketing Enthusiast</div>
-      <div style="color: var(--text-muted); font-size: 11px;">AI × Analytics × Products</div>
-      <div style="margin-top: 8px;"><span class="term-prompt">$</span> <span class="term-cursor"></span></div>
+    <div class="hero-identity" id="heroIdentity">
+      <div class="hero-identity-name">Jayitha Reddy</div>
+      <div class="hero-identity-rule"></div>
+      <div class="hero-identity-disciplines">Business Analytics &nbsp;·&nbsp; Digital Marketing</div>
     </div>
     <div class="hero-subtitle-block" id="heroSubtitle">
-      <p class="hero-subtitle">Business Analytics Student · Digital Marketing Enthusiast</p>
-      <p class="hero-quip">And yes — I probably spent more time perfecting this website than I should have.</p>
+      <p class="hero-quip">And yes, I probably spent more time perfecting this website than I should have.</p>
     </div>
   </div>
 
-  <div class="hero-scroll-hint" id="scrollHint" style="opacity:0.7;">
+  <div class="hero-scroll-hint" id="scrollHint">
     <div class="scroll-hint-label">Scroll</div>
     <div class="scroll-hint-line"></div>
   </div>
@@ -1257,13 +1258,13 @@ footer {
       I'm someone who finds meaning at the intersection of data, design, and human behaviour.
     </p>
     <p class="about-body reveal">
-      Currently pursuing a <strong>Bachelor's in Business Analytics</strong> at FLAME University with a minor in Digital Marketing — I spend a lot of my time thinking about how data tells stories, how AI can reshape workflows, and how products become experiences people genuinely love using.
+      Currently pursuing a <strong>Bachelor's in Business Analytics</strong> at FLAME University with a minor in Digital Marketing. I spend a lot of my time thinking about how data tells stories, how AI can reshape workflows, and how products become experiences people genuinely love using.
     </p>
     <p class="about-body reveal">
-      My work spans <strong>business intelligence</strong>, <strong>AI-assisted data processing</strong>, research, and content — but what threads it together is an obsession with clarity. Making complex things simple. Finding the pattern hiding in the noise.
+      My work spans <strong>business intelligence</strong>, <strong>AI-assisted data processing</strong>, research, and content. What threads it together is an obsession with clarity: making complex things simple, finding the pattern hiding in the noise.
     </p>
     <p class="about-body reveal">
-      Outside of the analytical world, I'm equally at home with a sketchbook, a camera, or a piano. I find that creativity and analysis aren't opposites — they're the same muscle, flexed differently. Photography in particular is something I'm building into a serious practice, and I'll have a gallery to show for it soon.
+      Outside of the analytical world, I'm equally at home with a sketchbook, a camera, or a piano. I find that creativity and analysis aren't opposites. They're the same muscle, flexed differently. Photography in particular is something I'm building into a serious practice, and I'll have a gallery to show for it soon.
     </p>
 
     <div class="about-interests reveal">
@@ -1288,7 +1289,7 @@ footer {
       <h2 class="section-heading reveal">Where I've<br><span class="section-heading-italic">been.</span></h2>
     </div>
     <p class="exp-intro reveal">
-      Each role has been a different lens on the same underlying question — how do people, data, and systems create value together? Here's where I've been exploring that.
+      Each role has been a different lens on the same underlying question: how do people, data, and systems create value together? Here's where I've been exploring that.
     </p>
   </div>
 
@@ -1305,14 +1306,14 @@ footer {
         <span class="tag">SKU Mapping</span>
       </div>
       <p class="timeline-desc">
-        Led product data standardization across large datasets — building classification systems, SKU mapping frameworks, and AI-assisted pipelines that dramatically reduced manual processing time. Created BI dashboards that turned raw product data into actionable insights for the marketing team. Worked closely with cross-functional stakeholders to validate data integrity and streamline catalogue operations at scale.
+        Led product data standardization across large datasets, building classification systems, SKU mapping frameworks, and AI-assisted pipelines that dramatically reduced manual processing time. Created BI dashboards that turned raw product data into actionable insights for the marketing team. Worked closely with cross-functional stakeholders to validate data integrity and streamline catalogue operations at scale.
       </p>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-year">Sept 2025 – Present</div>
       <div class="timeline-company">WageIndicator Foundation</div>
-      <div class="timeline-role">Student Intern — Content & Communications · Research Lab</div>
+      <div class="timeline-role">Student Intern, Content & Communications · Research Lab</div>
       <div class="timeline-tags">
         <span class="tag">Labour Market Research</span>
         <span class="tag">Content Development</span>
@@ -1320,7 +1321,7 @@ footer {
         <span class="tag">Communications</span>
       </div>
       <p class="timeline-desc">
-        Contributing to primary and secondary research on labour markets across emerging economies. Developing content and communications materials grounded in survey data and wage indicators. The work sits at the intersection of social research and data storytelling — making complex economic realities accessible and compelling to a global audience.
+        Contributing to primary and secondary research on labour markets across emerging economies. Developing content and communications materials grounded in survey data and wage indicators. The work sits at the intersection of social research and data storytelling: making complex economic realities accessible and compelling to a global audience.
       </p>
     </div>
 
@@ -1335,7 +1336,7 @@ footer {
         <span class="tag">Safe City Project</span>
       </div>
       <p class="timeline-desc">
-        Worked with Vimochana on the Bengaluru Safe City Project — supporting alternative justice forums, community engagement programmes, and gender sensitization initiatives. Conducted research and outreach that fed into policy-adjacent advocacy work. A reminder that the most important datasets are often the ones we collect door to door.
+        Worked with Vimochana on the Bengaluru Safe City Project, supporting alternative justice forums, community engagement programmes, and gender sensitization initiatives. Conducted research and outreach that fed into policy-adjacent advocacy work. A reminder that the most important datasets are often the ones we collect door to door.
       </p>
     </div>
 
@@ -1374,7 +1375,7 @@ footer {
       <div class="project-num">03</div>
       <div class="project-icon-wrap"><span class="project-icon">🔄</span></div>
       <h3 class="project-name">Data Standardization Pipeline</h3>
-      <p class="project-desc">A systematic approach to cleaning, normalizing, and standardizing product data at scale — making downstream analytics reliable.</p>
+      <p class="project-desc">A systematic approach to cleaning, normalizing, and standardizing product data at scale, making downstream analytics reliable and consistent.</p>
       <div class="project-tech">
         <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">ETL</span>
       </div>
@@ -1496,11 +1497,11 @@ footer {
       <div class="edu-degree">Bachelor of Business Administration</div>
       <div class="edu-major">Business Analytics (Major) · Digital Marketing (Minor)</div>
       <p class="edu-detail">
-        Exploring the intersection of quantitative methods, business strategy, and digital ecosystems. Coursework spanning data analytics, consumer psychology, financial analysis, and marketing research — with extracurricular interests in entrepreneurship, AI applications, and creative leadership.
+        Exploring the intersection of quantitative methods, business strategy, and digital ecosystems. Coursework spanning data analytics, consumer psychology, financial analysis, and marketing research. Extracurricular interests include entrepreneurship, AI applications, and creative leadership.
       </p>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: 1px;">
+    <div style="display: flex; flex-direction: column; gap: 1px; background: var(--border-dim);">
       <div class="edu-card reveal" data-index="02" style="flex: 1;">
         <div class="edu-year">Grade 12 · ISC</div>
         <div class="edu-institution">Vidyashilp Academy</div>
@@ -1547,12 +1548,12 @@ footer {
     </div>
     <div class="cert-card">
       <div class="cert-year">2026</div>
-      <div class="cert-name">INSIDE LVMH — Creation & Branding</div>
+      <div class="cert-name">INSIDE LVMH: Creation & Branding</div>
       <div class="cert-issuer">LVMH</div>
     </div>
     <div class="cert-card">
       <div class="cert-year">2026</div>
-      <div class="cert-name">INSIDE LVMH — Operations & Supply Chain</div>
+      <div class="cert-name">INSIDE LVMH: Operations & Supply Chain</div>
       <div class="cert-issuer">LVMH</div>
     </div>
   </div>
@@ -1563,11 +1564,11 @@ footer {
   <div class="section-rule"></div>
   <span class="section-label reveal">Currently Exploring</span>
   <h2 class="section-heading reveal">What I'm<br><span class="section-heading-italic">thinking about.</span></h2>
-  <p class="exploring-intro reveal">This isn't a skills list. It's more like a notebook — the things currently occupying my mind, the questions I keep coming back to.</p>
+  <p class="exploring-intro reveal">This isn't a skills list. It's more like a notebook: the things currently occupying my mind, the questions I keep coming back to.</p>
 
   <div class="topics-list">
 
-    <div class="topic-item" data-body="AI isn't just a tool category — it's a new way of thinking about what tasks are worth doing at all. I'm particularly drawn to how LLMs are changing the nature of knowledge work: what analysis means when a model can do the first draft, what judgement means when the AI can surface the options. I use AI tools daily and think a lot about where human intuition still wins — and where it doesn't.">
+    <div class="topic-item" data-body="AI isn't just a tool category. It's a new way of thinking about what tasks are worth doing at all. I'm particularly drawn to how LLMs are changing the nature of knowledge work: what analysis means when a model can do the first draft, what judgement means when the AI can surface the options. I use AI tools daily and think a lot about where human intuition still wins, and where it doesn't.">
       <div class="topic-header">
         <span class="topic-title">Artificial Intelligence</span>
         <span class="topic-num">01</span>
@@ -1576,7 +1577,7 @@ footer {
       <div class="topic-body"><p class="topic-content"></p></div>
     </div>
 
-    <div class="topic-item" data-body="People don't make decisions the way economics textbooks say they do. Loss aversion, anchoring, social proof — these aren't bugs in human behaviour, they're the operating system. Understanding them changes how I approach everything from product design to marketing copy to how I structure a presentation. Kahneman's work sits permanently on my reading list.">
+    <div class="topic-item" data-body="People don't make decisions the way economics textbooks say they do. Loss aversion, anchoring, social proof: these aren't bugs in human behaviour, they're the operating system. Understanding them changes how I approach everything from product design to marketing copy to how I structure a presentation. Kahneman's work sits permanently on my reading list.">
       <div class="topic-header">
         <span class="topic-title">Consumer Psychology</span>
         <span class="topic-num">02</span>
@@ -1585,7 +1586,7 @@ footer {
       <div class="topic-body"><p class="topic-content"></p></div>
     </div>
 
-    <div class="topic-item" data-body="Numbers without a narrative don't move people. The best analysts aren't the ones who find the most interesting data — they're the ones who can make someone feel why that data matters. I'm working on making this the core skill: not just insight, but the ability to communicate it in a way that actually changes what someone does next.">
+    <div class="topic-item" data-body="Numbers without a narrative don't move people. The best analysts aren't the ones who find the most interesting data. They're the ones who can make someone feel why that data matters. I'm working on making this the core skill: not just insight, but the ability to communicate it in a way that actually changes what someone does next.">
       <div class="topic-header">
         <span class="topic-title">Data Storytelling</span>
         <span class="topic-num">03</span>
@@ -1594,7 +1595,7 @@ footer {
       <div class="topic-body"><p class="topic-content"></p></div>
     </div>
 
-    <div class="topic-item" data-body="What makes something a product people love versus something they merely use? It's partly function, partly feeling — a combination of how it works, how it looks, and how it makes someone feel about themselves when they use it. I think about product decisions a lot: what features get cut, what metrics matter, how you know when something is ready.">
+    <div class="topic-item" data-body="What makes something a product people love versus something they merely use? It's partly function, partly feeling. A combination of how it works, how it looks, and how it makes someone feel about themselves when they use it. I think about product decisions a lot: what features get cut, what metrics matter, how you know when something is ready.">
       <div class="topic-header">
         <span class="topic-title">Product Strategy</span>
         <span class="topic-num">04</span>
@@ -1603,7 +1604,7 @@ footer {
       <div class="topic-body"><p class="topic-content"></p></div>
     </div>
 
-    <div class="topic-item" data-body="Marketing at its best isn't about selling — it's about finding the people who already want what you have and making sure they find you. The digital side of this is where I'm most active: attribution models, campaign analytics, content strategy that's actually grounded in data. The creative and quantitative sides of marketing are more intertwined than most people realize.">
+    <div class="topic-item" data-body="Marketing at its best isn't about selling. It's about finding the people who already want what you have and making sure they find you. The digital side of this is where I'm most active: attribution models, campaign analytics, content strategy that's actually grounded in data. The creative and quantitative sides of marketing are more intertwined than most people realize.">
       <div class="topic-header">
         <span class="topic-title">Digital Marketing</span>
         <span class="topic-num">05</span>
@@ -1612,7 +1613,7 @@ footer {
       <div class="topic-body"><p class="topic-content"></p></div>
     </div>
 
-    <div class="topic-item" data-body="The study of how irrationality is actually predictable. If psychology explains why individuals behave the way they do, behavioural economics explains the market-level consequences. Nudge theory, time preferences, fairness heuristics — these have huge implications for both product design and policy, and I find the overlap between academic research and practical application genuinely exciting.">
+    <div class="topic-item" data-body="The study of how irrationality is actually predictable. If psychology explains why individuals behave the way they do, behavioural economics explains the market-level consequences. Nudge theory, time preferences, fairness heuristics: these have huge implications for both product design and policy, and I find the overlap between academic research and practical application genuinely exciting.">
       <div class="topic-header">
         <span class="topic-title">Behavioural Economics</span>
         <span class="topic-num">06</span>
@@ -1621,7 +1622,7 @@ footer {
       <div class="topic-body"><p class="topic-content"></p></div>
     </div>
 
-    <div class="topic-item" data-body="Not the hustle-culture version — the actual question of what it takes to build something from nothing. What's the right problem to work on? How do you know? At what point does analysis become an excuse not to act? I don't have a startup yet, but I'm thinking about these questions constantly, because they're essentially the same questions that make a good analyst: identify the real problem, then do something about it.">
+    <div class="topic-item" data-body="Not the hustle-culture version. The actual question of what it takes to build something from nothing. What's the right problem to work on? How do you know? At what point does analysis become an excuse not to act? I don't have a startup yet, but I'm thinking about these questions constantly, because they're essentially the same questions that make a good analyst: identify the real problem, then do something about it.">
       <div class="topic-header">
         <span class="topic-title">Entrepreneurship</span>
         <span class="topic-num">07</span>
@@ -1643,7 +1644,7 @@ footer {
         <span>talk.</span>
       </h2>
       <p class="contact-tagline">
-        Whether it's AI, analytics, business, design, or simply exchanging ideas — I'd love to hear from you.
+        Whether it's AI, analytics, business, design, or simply exchanging ideas. I'd love to hear from you.
       </p>
     </div>
     <div class="contact-links reveal">
@@ -1676,7 +1677,7 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-copy">© 2026 Jayitha Reddy — All rights reserved</span>
+  <span class="footer-copy">© 2026 Jayitha Reddy. All rights reserved.</span>
   <span class="footer-note">Made with intention, not a template.</span>
 </footer>
 
@@ -1717,16 +1718,20 @@ document.addEventListener('mousemove', e => {
 
 document.querySelectorAll('a, button, .topic-header, .project-card, .skill-group, .contact-link, .mag-btn').forEach(el => {
   el.addEventListener('mouseenter', () => {
-    cursor.style.width = '16px';
-    cursor.style.height = '16px';
-    ring.style.width = '52px';
-    ring.style.height = '52px';
+    cursor.style.width = '14px';
+    cursor.style.height = '14px';
+    cursor.classList.add('on-link');
+    ring.style.width = '48px';
+    ring.style.height = '48px';
+    ring.classList.add('on-link');
   });
   el.addEventListener('mouseleave', () => {
     cursor.style.width = '8px';
     cursor.style.height = '8px';
+    cursor.classList.remove('on-link');
     ring.style.width = '36px';
     ring.style.height = '36px';
+    ring.classList.remove('on-link');
   });
 });
 
@@ -1737,7 +1742,7 @@ document.addEventListener('mousemove', e => {
   glow.style.top = e.clientY + 'px';
 });
 
-// ── HERO PARTICLE CANVAS ──
+// ── HERO PARTICLE CANVAS ── (light mode: very subtle warm dust)
 (function() {
   const canvas = document.getElementById('hero-canvas');
   const ctx = canvas.getContext('2d');
@@ -1752,18 +1757,18 @@ document.addEventListener('mousemove', e => {
   function Particle() {
     this.x = Math.random() * W;
     this.y = Math.random() * H;
-    this.vx = (Math.random() - 0.5) * 0.3;
-    this.vy = (Math.random() - 0.5) * 0.3;
-    this.r = Math.random() * 1.2 + 0.3;
-    this.alpha = Math.random() * 0.5 + 0.05;
-    this.da = (Math.random() - 0.5) * 0.003;
+    this.vx = (Math.random() - 0.5) * 0.15;
+    this.vy = (Math.random() - 0.5) * 0.15;
+    this.r = Math.random() * 1.5 + 0.5;
+    this.alpha = Math.random() * 0.18 + 0.03;
+    this.da = (Math.random() - 0.5) * 0.002;
   }
 
   Particle.prototype.update = function() {
     this.x += this.vx;
     this.y += this.vy;
     this.alpha += this.da;
-    if (this.alpha < 0.02 || this.alpha > 0.6) this.da *= -1;
+    if (this.alpha < 0.02 || this.alpha > 0.22) this.da *= -1;
     if (this.x < 0) this.x = W;
     if (this.x > W) this.x = 0;
     if (this.y < 0) this.y = H;
@@ -1773,36 +1778,29 @@ document.addEventListener('mousemove', e => {
   resize();
   window.addEventListener('resize', resize);
 
-  for (let i = 0; i < 80; i++) particles.push(new Particle());
+  for (let i = 0; i < 55; i++) particles.push(new Particle());
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    // Subtle gradient overlay
-    const grad = ctx.createRadialGradient(W * 0.7, H * 0.3, 0, W * 0.7, H * 0.3, W * 0.6);
-    grad.addColorStop(0, 'rgba(200, 169, 106, 0.03)');
-    grad.addColorStop(1, 'transparent');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, W, H);
 
     particles.forEach(p => {
       p.update();
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(200, 169, 106, ${p.alpha})`;
+      ctx.fillStyle = `rgba(158, 123, 63, ${p.alpha})`;
       ctx.fill();
     });
 
-    // Draw subtle connections
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
         const dy = particles[i].y - particles[j].y;
         const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 120) {
+        if (dist < 100) {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(200, 169, 106, ${0.04 * (1 - dist/120)})`;
+          ctx.strokeStyle = `rgba(158, 123, 63, ${0.025 * (1 - dist/100)})`;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
@@ -1834,12 +1832,11 @@ window.addEventListener('scroll', () => {
 function initAnimations() {
 
   // Hero entrance
-  gsap.to('#heroEyebrow', { opacity: 1, y: 0, duration: 0.8, delay: 0.1, ease: 'power3.out' });
-  gsap.to('#heroName1', { opacity: 1, y: 0, duration: 1, delay: 0.3, ease: 'power3.out' });
-  gsap.to('#heroName2', { opacity: 1, y: 0, duration: 1, delay: 0.5, ease: 'power3.out' });
-  gsap.to('#heroTerminal', { opacity: 1, y: 0, duration: 0.8, delay: 0.8, ease: 'power3.out' });
-  gsap.to('#heroSubtitle', { opacity: 1, y: 0, duration: 0.8, delay: 1, ease: 'power3.out' });
-  gsap.to('#scrollHint', { opacity: 0.7, duration: 1, delay: 1.5, ease: 'power2.out' });
+  gsap.to('#heroName1', { opacity: 1, y: 0, duration: 1.1, delay: 0.1, ease: 'power3.out' });
+  gsap.to('#heroName2', { opacity: 1, y: 0, duration: 1.1, delay: 0.3, ease: 'power3.out' });
+  gsap.to('#heroIdentity', { opacity: 1, y: 0, duration: 0.9, delay: 0.7, ease: 'power3.out' });
+  gsap.to('#heroSubtitle', { opacity: 1, y: 0, duration: 0.9, delay: 0.9, ease: 'power3.out' });
+  gsap.to('#scrollHint', { opacity: 0.7, duration: 1, delay: 1.4, ease: 'power2.out' });
 
   // Generic scroll reveals
   gsap.utils.toArray('.reveal').forEach(el => {
@@ -1912,12 +1909,10 @@ document.querySelectorAll('.topic-item').forEach(item => {
 
   header.addEventListener('click', () => {
     const isOpen = item.classList.contains('open');
-    // Close all
     document.querySelectorAll('.topic-item.open').forEach(i => {
       i.classList.remove('open');
       i.querySelector('.topic-body').style.maxHeight = '0';
     });
-    // Open this
     if (!isOpen) {
       item.classList.add('open');
       body.style.maxHeight = body.scrollHeight + 40 + 'px';
@@ -1951,7 +1946,7 @@ window.addEventListener('scroll', () => {
   });
   navLinks.forEach(a => {
     a.style.color = a.getAttribute('href') === '#' + current
-      ? 'var(--text-cream)'
+      ? 'var(--text-primary)'
       : 'var(--text-muted)';
   });
 });
