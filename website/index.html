@@ -261,7 +261,7 @@ section{position:relative;padding:72px 60px}
 ══════════════════════════════════════════ */
 #about{background:var(--bg-w);border-top:1px solid var(--rule)}
 
-.about-grid{display:grid;grid-template-columns:300px 1fr;gap:60px;align-items:start}
+.about-grid{display:grid;grid-template-columns:1fr;gap:60px;align-items:start;max-width:760px}
 
 .about-img-col{position:relative;flex-shrink:0}
 .about-polaroid{
@@ -585,7 +585,7 @@ footer{
 <section id="hero">
 
   <div class="hero-topbar">
-    <div class="ht-coord">LAT 18.5204° N / LON 73.8567° E — PUNE, INDIA</div>
+    <div class="ht-coord">LAT 12.9716° N / LON 77.5946° E — BANGALORE, INDIA</div>
     <div class="ht-issue">ISSUE NO. 01 — 2026</div>
     <div class="ht-role">BUSINESS ANALYTICS STUDENT<br>FLAME UNIVERSITY / OPEN TO OPPORTUNITIES</div>
   </div>
@@ -629,19 +629,12 @@ footer{
   </div>
 
   <div class="about-grid">
-    <div class="about-img-col rev">
-      <div class="about-polaroid">
-        <img src="assets/portrait.jpg" alt="Jayitha Reddy">
-        <div class="about-pol-cap">Jayitha Reddy — Pune, 2026</div>
-      </div>
-    </div>
-
     <div class="about-content">
       <p class="about-intro rev">
         Analytical mind, creative spirit. I find meaning at the intersection of data, design, and human behaviour.
       </p>
       <p class="about-body rev">
-        Currently pursuing a <strong>Bachelor's in Business Analytics</strong> at FLAME University with a minor in Digital Marketing. I spend a lot of my time thinking about how data tells stories, how AI can reshape workflows, and how products become experiences people genuinely love using.
+        Currently pursuing a <strong>Bachelor's in Business Administration with a major in Business Analytics</strong> at FLAME University with a minor in Digital Marketing. I spend a lot of my time thinking about how data tells stories, how AI can reshape workflows, and how products become experiences people genuinely love using.
       </p>
       <p class="about-body rev">
         My work spans <strong>business intelligence</strong>, <strong>AI-assisted data processing</strong>, research, and content. What threads it together is an obsession with clarity: making complex things simple, finding the pattern hiding in the noise.
@@ -724,38 +717,45 @@ footer{
   <div class="proj-grid">
     <div class="proj-card l">
       <div class="pj-num">01</div>
-      <div class="pj-ico">🤖</div>
+      <div class="pj-ico" style="font-family:var(--fd);font-size:13px;letter-spacing:.04em;color:var(--red)">AI</div>
       <h3 class="pj-name">AI Product Classification System</h3>
       <p class="pj-desc">An AI-assisted pipeline for automating product category classification across large-scale e-commerce catalogues. Reduced manual tagging effort by training on structured product descriptions and applying rule-based post-processing for edge cases.</p>
       <div class="pj-tech"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Classification</span><span class="tag">Automation</span></div>
     </div>
     <div class="proj-card m">
       <div class="pj-num">02</div>
-      <div class="pj-ico">📊</div>
+      <div class="pj-ico" style="font-family:var(--fd);font-size:13px;letter-spacing:.04em;color:var(--red)">BI</div>
       <h3 class="pj-name">Business Intelligence Dashboard</h3>
       <p class="pj-desc">End-to-end BI dashboard built on product and sales data. Designed to surface actionable insights for marketing and operations teams with minimal friction.</p>
       <div class="pj-tech"><span class="tag">Tableau</span><span class="tag">Excel</span><span class="tag">Data Viz</span></div>
     </div>
     <div class="proj-card s">
       <div class="pj-num">03</div>
-      <div class="pj-ico">🔄</div>
+      <div class="pj-ico" style="font-family:var(--fm);font-size:11px;color:var(--red);letter-spacing:.02em">ETL</div>
       <h3 class="pj-name">Data Standardization Pipeline</h3>
       <p class="pj-desc">A systematic approach to cleaning, normalizing, and standardizing product data at scale, making downstream analytics reliable and consistent.</p>
       <div class="pj-tech"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">ETL</span></div>
     </div>
     <div class="proj-card mf">
       <div class="pj-num">04</div>
-      <div class="pj-ico">⚡</div>
+      <div class="pj-ico" style="font-family:var(--fm);font-size:14px;color:var(--red);letter-spacing:-.02em">{↺}</div>
       <h3 class="pj-name">Workflow Automation Tools</h3>
       <p class="pj-desc">A set of lightweight automation scripts built to eliminate repetitive data entry and validation tasks. The kind of work that makes a team ask, "why did we ever do this manually?" The answer: nobody thought to automate it yet.</p>
       <div class="pj-tech"><span class="tag">Python</span><span class="tag">Scripting</span><span class="tag">Process Design</span></div>
     </div>
     <div class="proj-card s">
       <div class="pj-num">05</div>
-      <div class="pj-ico">✦</div>
+      <div class="pj-ico" style="font-family:var(--fm);font-size:11px;color:var(--red);letter-spacing:.02em">&lt;/&gt;</div>
       <h3 class="pj-name">This Website</h3>
       <p class="pj-desc">Built as a design challenge to myself. Editorial, intentional, zero-template.</p>
       <div class="pj-tech"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">GSAP</span></div>
+    </div>
+    <div class="proj-card mf">
+      <div class="pj-num">06</div>
+      <div class="pj-ico" style="font-family:var(--fm);font-size:14px;color:var(--red);letter-spacing:.04em">◎</div>
+      <h3 class="pj-name">Art & Photography Portfolio</h3>
+      <p class="pj-desc">An ongoing visual practice spanning street photography, portraiture, and hand-drawn illustration. Shot on digital and film. The work explores light, composition, and the quiet moments in between. Gallery coming soon.</p>
+      <div class="pj-tech"><span class="tag">Photography</span><span class="tag">Illustration</span><span class="tag">Visual Art</span></div>
     </div>
   </div>
 </section>
@@ -863,10 +863,13 @@ footer{
   <div class="cert-grid">
     <div class="cert-card rev"><div class="cert-yr">2023</div><div class="cert-name">Financial Markets</div><div class="cert-iss">Yale University</div></div>
     <div class="cert-card rev"><div class="cert-yr">2024</div><div class="cert-name">Behavioural Finance</div><div class="cert-iss">Duke University</div></div>
+    <div class="cert-card rev"><div class="cert-yr">2024</div><div class="cert-name">Python and Statistics for Financial Analysis</div><div class="cert-iss">Hong Kong University of Science and Technology</div></div>
     <div class="cert-card rev"><div class="cert-yr">2025</div><div class="cert-name">Marketing Analytics Foundations</div><div class="cert-iss">IIBA</div></div>
     <div class="cert-card rev"><div class="cert-yr">2025</div><div class="cert-name">Investment Banking Experience Program</div><div class="cert-iss">Finlatics</div></div>
     <div class="cert-card rev"><div class="cert-yr">2026</div><div class="cert-name">INSIDE LVMH: Creation & Branding</div><div class="cert-iss">LVMH</div></div>
     <div class="cert-card rev"><div class="cert-yr">2026</div><div class="cert-name">INSIDE LVMH: Operations & Supply Chain</div><div class="cert-iss">LVMH</div></div>
+    <div class="cert-card rev"><div class="cert-yr">Jan 2026</div><div class="cert-name">Data Science & Analytics</div><div class="cert-iss">HP LIFE</div></div>
+    <div class="cert-card rev"><div class="cert-yr">Dec 2016</div><div class="cert-name">Piano Grade 2</div><div class="cert-iss">Trinity College London</div></div>
   </div>
 </section>
 
@@ -921,8 +924,8 @@ footer{
     </div>
     <div class="rev">
       <div class="c-links">
-        <a href="mailto:jayithareddy30@gmail.com" class="c-link">
-          <div><div class="c-label">Email</div><div class="c-val">jayithareddy30@gmail.com</div></div>
+        <a href="mailto:jayithareddy25@gmail.com" class="c-link">
+          <div><div class="c-label">Email</div><div class="c-val">jayithareddy25@gmail.com</div></div>
           <span class="c-arr">↗</span>
         </a>
         <a href="https://linkedin.com/in/jayitha-reddy" target="_blank" rel="noopener" class="c-link">
