@@ -18,7 +18,7 @@
   <rect x="100" y="285" width="600" height="1.5" fill="#1A1814" opacity="0.25"/>
 
   <!-- Tagline -->
-  <text x="102" y="340" font-family="'Courier New', monospace" font-size="22" fill="#3C3832" letter-spacing="3">BUSINESS ANALYTICS · DIGITAL MARKETING · AI</text>
+  <text x="102" y="340" font-family="'Courier New', monospace" font-size="22" fill="#3C3832" letter-spacing="3">BUSINESS ANALYTICS · DIGITAL MARKETING</text>
 
   <!-- Location + university -->
   <text x="102" y="400" font-family="'Courier New', monospace" font-size="16" fill="#7A756E" letter-spacing="2">FLAME UNIVERSITY · BANGALORE</text>
