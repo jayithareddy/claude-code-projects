@@ -1038,79 +1038,194 @@ document.querySelectorAll('.topic').forEach(item => {
   });
 });
 
-// ── ANIMATED RULES ──
-['rAbout','rExp','rProj','rSkill','rEdu','rCert','rExpl','rCont'].forEach(id => {
-  const el = document.getElementById(id);
-  if(!el) return;
-  ScrollTrigger.create({
-    trigger:el, start:'top 90%',
-    onEnter:()=>el.classList.add('drawn')
-  });
-});
-
 // ── MAIN INIT ──
 function initAll() {
-  // Hero entrance
-  const tl = gsap.timeline({delay:.05});
-  tl.to('#hN1',  {opacity:1, y:0, duration:.8, ease:'power3.out'}, 0)
-    .to('#hN2',  {opacity:1, y:0, duration:.8, ease:'power3.out'}, .15)
-    .to('#hTag', {opacity:1, duration:.6, ease:'power2.out'}, .4)
-    .to('#hCta', {opacity:1, duration:.5, ease:'power2.out'}, .7);
 
-  // Scroll reveals
-  gsap.utils.toArray('.rev').forEach(el => {
-    gsap.fromTo(el, {opacity:0,y:20},{
-      opacity:1, y:0, duration:.7, ease:'power3.out',
-      scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}
+  // ── REDUCED MOTION: instant reveal, skip all animation ──
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.rev,.tl-item,.proj-card,.sk-group,.edu-card,.cert-card,.topic,.s-rule').forEach(el => {
+      gsap.set(el, {opacity:1, y:0, x:0, scale:1, skewX:0, rotationX:0, rotationY:0, filter:'none', clearProps:'transform'});
+    });
+    document.querySelectorAll('.s-rule').forEach(el => el.classList.add('drawn'));
+    return;
+  }
+
+  // ══════════════════════════════════════
+  // HERO
+  // ══════════════════════════════════════
+
+  // Entrance — letters drop in with power easing
+  const heroIn = gsap.timeline({delay:.05});
+  heroIn
+    .to('#hN1',  {opacity:1, y:0, duration:1,   ease:'power4.out'}, 0)
+    .to('#hN2',  {opacity:1, y:0, duration:1,   ease:'power4.out'}, .12)
+    .to('#hTag', {opacity:1, duration:.7,        ease:'power2.out'}, .5)
+    .to('#hCta', {opacity:1, duration:.6,        ease:'power2.out'}, .8);
+
+  // Exit — as you scroll away the name slowly expands and blurs, like pulling back from a headline
+  gsap.timeline({
+    scrollTrigger: { trigger:'#hero', start:'center top', end:'bottom top', scrub:1.4 }
+  })
+  .to(['#hN1','#hN2'], {scale:1.06, opacity:0, filter:'blur(10px)', ease:'none'}, 0)
+  .to('#hTag',          {y:-28, opacity:0, ease:'none'}, 0)
+  .to('#hCta',          {y:-18, opacity:0, ease:'none'}, 0);
+
+  // ══════════════════════════════════════
+  // SECTION RULES — GSAP scrub draw
+  // ══════════════════════════════════════
+  document.querySelectorAll('.s-rule').forEach(el => {
+    gsap.fromTo(el,
+      {scaleX:0, opacity:0},
+      {scaleX:1, opacity:1, duration:1.4, ease:'power3.inOut',
+       scrollTrigger:{trigger:el, start:'top 90%', toggleActions:'play none none none'}}
+    );
+  });
+
+  // Section number parallax — drifts upward as you scroll through each section
+  document.querySelectorAll('.s-num').forEach(el => {
+    gsap.to(el, {
+      y: -24, ease:'none',
+      scrollTrigger:{trigger:el.closest('section'), start:'top bottom', end:'bottom top', scrub:true}
     });
   });
 
-  // Timeline items
-  gsap.utils.toArray('.tl-item').forEach((el,i) => {
-    gsap.to(el, {
-      opacity:1, y:0, duration:.65, ease:'power3.out', delay:i*.07,
-      scrollTrigger:{trigger:el,start:'top 86%',toggleActions:'play none none none'}
-    });
+  // ══════════════════════════════════════
+  // ABOUT — slides in from the left, polaroid swings down from above
+  // ══════════════════════════════════════
+  gsap.fromTo('.about-polaroid',
+    {y:-60, rotation:14, opacity:0},
+    {y:0, rotation:1, opacity:1, duration:1.4, ease:'back.out(1.2)',
+     scrollTrigger:{trigger:'#about', start:'top 78%'}}
+  );
+
+  document.querySelectorAll('#about .rev').forEach((el, i) => {
+    gsap.fromTo(el,
+      {opacity:0, x:-32},
+      {opacity:1, x:0, duration:.85, ease:'power3.out', delay:i*.12,
+       scrollTrigger:{trigger:el, start:'top 88%'}}
+    );
   });
 
-  // Project cards
-  gsap.utils.toArray('.proj-card').forEach((el,i) => {
-    gsap.to(el, {
-      opacity:1, y:0, duration:.6, ease:'power3.out', delay:i*.06,
-      scrollTrigger:{trigger:'.proj-grid',start:'top 82%',toggleActions:'play none none none'}
-    });
+  // ══════════════════════════════════════
+  // EXPERIENCE — items alternate left / right, slight perspective lean
+  // ══════════════════════════════════════
+  document.querySelectorAll('#experience .s-meta.rev').forEach(el => {
+    gsap.fromTo(el, {opacity:0, y:18}, {opacity:1, y:0, duration:.7, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 88%'}});
   });
 
-  // Skills
-  gsap.utils.toArray('.sk-group').forEach((el,i) => {
-    gsap.to(el, {
-      opacity:1, y:0, duration:.55, ease:'power3.out', delay:i*.05,
-      scrollTrigger:{trigger:'.skills-grid',start:'top 82%',toggleActions:'play none none none'}
-    });
+  gsap.utils.toArray('.tl-item').forEach((el, i) => {
+    const xDir = i % 2 === 0 ? 80 : -80;
+    gsap.fromTo(el,
+      {opacity:0, x:xDir, rotationY: i%2===0 ? 7:-7, transformPerspective:900},
+      {opacity:1, x:0,    rotationY:0, duration:.9, ease:'power3.out', delay:i*.1,
+       scrollTrigger:{trigger:el, start:'top 85%'}}
+    );
   });
 
-  // Edu cards
-  gsap.utils.toArray('.edu-card').forEach((el,i) => {
-    gsap.to(el, {
-      opacity:1, y:0, duration:.6, ease:'power3.out', delay:i*.1,
-      scrollTrigger:{trigger:'.edu-grid',start:'top 82%',toggleActions:'play none none none'}
-    });
+  // ══════════════════════════════════════
+  // PROJECTS — cards flip in like magazine pages turning
+  // ══════════════════════════════════════
+  document.querySelectorAll('#projects .s-meta.rev').forEach(el => {
+    gsap.fromTo(el, {opacity:0, y:18}, {opacity:1, y:0, duration:.7, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 88%'}});
   });
 
-  // Certs
-  gsap.utils.toArray('.cert-card').forEach((el,i) => {
-    gsap.to(el, {
-      opacity:1, y:0, duration:.5, ease:'power3.out', delay:i*.05,
-      scrollTrigger:{trigger:'.cert-grid',start:'top 82%',toggleActions:'play none none none'}
-    });
+  gsap.utils.toArray('.proj-card').forEach((el, i) => {
+    gsap.fromTo(el,
+      {opacity:0, y:48, rotationX:12, transformPerspective:1000},
+      {opacity:1, y:0,  rotationX:0,  duration:.75, ease:'power3.out', delay:i*.07,
+       scrollTrigger:{trigger:'.proj-grid', start:'top 82%'}}
+    );
   });
 
-  // Topics
-  gsap.utils.toArray('.topic').forEach((el,i) => {
-    gsap.to(el, {
-      opacity:1, y:0, duration:.5, ease:'power3.out', delay:i*.04,
-      scrollTrigger:{trigger:'.topics',start:'top 84%',toggleActions:'play none none none'}
-    });
+  // ══════════════════════════════════════
+  // SKILLS — diagonal skew-slide from left
+  // ══════════════════════════════════════
+  document.querySelectorAll('#skills .s-meta.rev').forEach(el => {
+    gsap.fromTo(el, {opacity:0, y:18}, {opacity:1, y:0, duration:.7, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 88%'}});
+  });
+
+  gsap.utils.toArray('.sk-group').forEach((el, i) => {
+    gsap.fromTo(el,
+      {opacity:0, x:-38, skewX:-3},
+      {opacity:1, x:0,   skewX:0, duration:.7, ease:'power3.out', delay:i*.055,
+       scrollTrigger:{trigger:'.skills-grid', start:'top 82%'}}
+    );
+  });
+
+  // ══════════════════════════════════════
+  // EDUCATION — cards rise from depth below
+  // ══════════════════════════════════════
+  document.querySelectorAll('#education .s-meta.rev').forEach(el => {
+    gsap.fromTo(el, {opacity:0, y:18}, {opacity:1, y:0, duration:.7, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 88%'}});
+  });
+
+  gsap.utils.toArray('.edu-card').forEach((el, i) => {
+    gsap.fromTo(el,
+      {opacity:0, y:70, scale:.93},
+      {opacity:1, y:0,  scale:1,   duration:.95, ease:'power4.out', delay:i*.18,
+       scrollTrigger:{trigger:'.edu-grid', start:'top 82%'}}
+    );
+  });
+
+  // ══════════════════════════════════════
+  // CERTIFICATIONS — each card stamps in with a spring bounce
+  // ══════════════════════════════════════
+  document.querySelectorAll('#certifications .s-meta.rev').forEach(el => {
+    gsap.fromTo(el, {opacity:0, y:18}, {opacity:1, y:0, duration:.7, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 88%'}});
+  });
+
+  gsap.utils.toArray('.cert-card').forEach((el, i) => {
+    gsap.fromTo(el,
+      {opacity:0, scale:.76, y:18},
+      {opacity:1, scale:1,   y:0,  duration:.55, ease:'back.out(2)', delay:i*.042,
+       scrollTrigger:{trigger:'.cert-grid', start:'top 82%'}}
+    );
+  });
+
+  // ══════════════════════════════════════
+  // EXPLORING — topics sweep in from the left one by one
+  // ══════════════════════════════════════
+  document.querySelectorAll('#exploring .s-meta.rev, #exploring .rev').forEach(el => {
+    gsap.fromTo(el, {opacity:0, y:18}, {opacity:1, y:0, duration:.7, ease:'power3.out',
+      scrollTrigger:{trigger:el, start:'top 88%'}});
+  });
+
+  gsap.utils.toArray('.topic').forEach((el, i) => {
+    gsap.fromTo(el,
+      {opacity:0, x:-52},
+      {opacity:1, x:0,   duration:.65, ease:'power3.out', delay:i*.05,
+       scrollTrigger:{trigger:'.topics', start:'top 84%'}}
+    );
+  });
+
+  // ══════════════════════════════════════
+  // CONTACT — dramatic scale-up entrance, links come from the right
+  // ══════════════════════════════════════
+
+  // Make the .rev wrappers transparent to let children animate instead
+  gsap.set('#contact .rev', {opacity:1, y:0});
+
+  gsap.fromTo('.contact-name',
+    {opacity:0, scale:.7, y:44},
+    {opacity:1, scale:1,  y:0,  duration:1.15, ease:'power4.out',
+     scrollTrigger:{trigger:'#contact', start:'top 74%'}}
+  );
+  gsap.fromTo('.contact-note',
+    {opacity:0, y:24},
+    {opacity:1, y:0, duration:.85, ease:'power3.out', delay:.3,
+     scrollTrigger:{trigger:'#contact', start:'top 74%'}}
+  );
+  gsap.utils.toArray('.c-link').forEach((el, i) => {
+    gsap.fromTo(el,
+      {opacity:0, x:44},
+      {opacity:1, x:0, duration:.65, ease:'power3.out', delay:.2 + i*.1,
+       scrollTrigger:{trigger:'#contact', start:'top 74%'}}
+    );
   });
 }
 </script>
